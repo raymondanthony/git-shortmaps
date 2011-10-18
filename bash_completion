@@ -32,19 +32,36 @@ __git-short_shortmap ()
   $( awk "/^$1 / { print \$2 }" <<< "$__git_short_maps" )
 }
 
+__git-short_shortalias ()
+{
+  cmd=$1
+  shift
+
+  # if we're not within a git dir, fall back to an actual command of this name
+  __gitdir >/dev/null || {
+    " $cmd $@"
+    return $?
+  }
+
+  # execute the command
+  $( grep "^$cmd" <<< "$__git_short_maps" | cut -d' ' -f3- ) "$@"
+}
+
+
 # load shortmaps from cwd (or provided path) and home dir (if available)
-__git_short_maps=$( cat ${1:-./shortmaps} ~/.git-shortmaps 2>/dev/null )
+__git_short_maps=$(
+  cat ${1:-./shortmaps} ~/.git-shortmaps 2>/dev/null \
+    | sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /'
+)
 
 # register each shortmap
 IFS=$'\n'
 for line in $__git_short_maps; do
   IFS=$' '
   set -- $line
-  short=$1
 
   [ -z "$1" ] && continue
   __git-short_docomplete "$1" __git-short_shortmap
 
-  shift 2
-  alias $short="$( sed 's/^:/git /' <<< "$@" )"
+  alias $1="__git-short_shortalias $1"
 done
