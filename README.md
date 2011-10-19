@@ -21,7 +21,11 @@ The file format is as follows:
 
 ```
 KEY COMPLETION :CMD
+KEY COMPLETION |CMD
 KEY COMPLETION CMD
 ```
 
-If `CMD` contains a `:` prefix, the command will be prefixed with `git`.
+If `CMD` contains a colon (`:`) prefix, the command will be prefixed with `git`. If
+prefixed with a pipe (`|`), the command will be sent to `eval` (needed for
+certain features like subshells). Commands without either prefix will be
+executed normally.
