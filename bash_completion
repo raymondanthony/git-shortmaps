@@ -83,6 +83,7 @@ __git_short_maps=$(
     | sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /'
 )
 
+oldifs="$IFS"
 
 # register each shortmap
 IFS=$'\n'
@@ -96,3 +97,5 @@ for line in $__git_short_maps; do
   __git-short_docomplete "$1" __git-short_shortmap
   __git-short_register_alias "$1"
 done
+
+IFS="$oldifs"
