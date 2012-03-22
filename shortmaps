@@ -13,6 +13,7 @@ f _git_fetch :fetch
 m _git_merge :merge
 p _git_push :push
 P _git_pull :pull
+Pr _git_pull :pull --rebase
 R __git_rebase :rebase
 Ri _git_rebase :rebase --interactive
 Ra _git_rebase :rebase --abort
