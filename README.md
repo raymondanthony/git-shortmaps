@@ -39,7 +39,7 @@ By default, the following mappings are available, each with tab completion:
 * `Ri` - git rebase --interactive
 * `Ra` - git rebase --abort
 * `Rc` - git rebase --continue
-* `s` - git status
+* `s` - git status --short
 * `S` - git stash
 * `t` - execute tig
 * `T` - git tag

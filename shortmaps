@@ -18,7 +18,7 @@ R __git_rebase :rebase
 Ri _git_rebase :rebase --interactive
 Ra _git_rebase :rebase --abort
 Rc _git_rebase :rebase --continue
-s : :status
+s : :status --short
 S _git_stash :stash
 t : tig
 T _git_tag :tag
