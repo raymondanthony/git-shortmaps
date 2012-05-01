@@ -34,7 +34,7 @@ By default, the following mappings are available, each with tab completion:
 * `m` - git merge
 * `p` - git push
 * `P` - git pull
-*  Pr - git pull --rebase
+* `Pr` - git pull --rebase
 * `R` - git rebase
 * `Ri` - git rebase --interactive
 * `Ra` - git rebase --abort
@@ -46,11 +46,12 @@ By default, the following mappings are available, each with tab completion:
 * `-` - git checkout -
 * `--` - `cd` to root dir of repository
 
-The shortmaps may only be used within a git repository. Otherwise, they will
+The shortmaps may only be used within a git repository; otherwise, they will
 invoke the actual command on the system.
 
-If a command conflicts with an existing command on your system, wrap the command
-in quotes to invoke the actual command.
+If a shortmap conflicts with an existing command on your system, then you may
+wrap the command in quotes to invoke the actual command rather than the
+shortmap (e.g. `'c'` to invoke `which c` rather than the shortmap `c`).
 
 ## Configuration
 The file format is as follows:
