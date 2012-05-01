@@ -27,8 +27,10 @@ By default, the following mappings are available, each with tab completion:
 * `Bb` - git bisect bad
 * `Br` - git bisect reset
 * `c` - git commit
-* `C` - git commit -am
+* `ca` - git commit --amend
 * `co` - git checkout
+* `C` - git commit -am
+* `CS` - git commit -S -am
 * `d` - git diff
 * `f` - git fetch
 * `m` - git merge

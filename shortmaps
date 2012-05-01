@@ -6,8 +6,10 @@ Bg _git_bisect :bisect good
 Bb _git_bisect :bisect bad
 Br _git_bisect :bisect reset
 c _git_commit :commit
-C _git_commit :commit -am
+ca _git_commit :commit --amend
 co _git_checkout :checkout
+C _git_commit :commit -am
+CS _git_commit :commit -S -am
 d _git_diff :diff
 f _git_fetch :fetch
 m _git_merge :merge
