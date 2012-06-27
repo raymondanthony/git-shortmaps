@@ -11,6 +11,7 @@ co _git_checkout :checkout
 C _git_commit :commit -am
 CS _git_commit :commit -S -am
 d _git_diff :diff
+ds _git_diff :diff --stat
 f _git_fetch :fetch
 m _git_merge :merge
 p _git_push :push

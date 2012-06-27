@@ -32,6 +32,7 @@ By default, the following mappings are available, each with tab completion:
 * `C` - git commit -am
 * `CS` - git commit -S -am
 * `d` - git diff
+* `ds` - git diff --stat
 * `f` - git fetch
 * `m` - git merge
 * `p` - git push
