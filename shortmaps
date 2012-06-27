@@ -25,4 +25,4 @@ S _git_stash :stash
 t : tig
 T _git_tag :tag
 - : :checkout -
--- : |cd "$( git rev-parse --git-dir 2>/dev/null )/../"
+-- : |cd "$( git rev-parse --show-toplevel 2>/dev/null )"
