@@ -13,10 +13,12 @@ CS _git_commit :commit -S -am
 d _git_diff :diff
 ds _git_diff :diff --stat
 f _git_fetch :fetch
+lh _git_log |git log --oneline --decorate --color | head
 m _git_merge :merge
 p _git_push :push
 P _git_pull :pull
 Pr _git_pull :pull --rebase
+Prp _git_pull |git pull --rebase && git push
 R __git_rebase :rebase
 Ri _git_rebase :rebase --interactive
 Ra _git_rebase :rebase --abort

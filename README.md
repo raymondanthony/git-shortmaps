@@ -1,5 +1,5 @@
-git-shortmaps provides very concise (one- or two-character), user-configurable
-commands for Git with support for Bash tab completion.
+git-shortmaps provides very concise (mostly one- and two-character),
+user-configurable commands for Git with support for Bash tab completion.
 
 # shortmaps / Bash Completion
 The `bash_completion` file contains Bash completion for custom commands and
@@ -34,10 +34,12 @@ By default, the following mappings are available, each with tab completion:
 * `d` - git diff
 * `ds` - git diff --stat
 * `f` - git fetch
+* `lh` - git log --oneline --decorate --color | head
 * `m` - git merge
 * `p` - git push
 * `P` - git pull
 * `Pr` - git pull --rebase
+* `Prp` - git pull --rebase && git push
 * `R` - git rebase
 * `Ri` - git rebase --interactive
 * `Ra` - git rebase --abort
