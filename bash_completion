@@ -30,6 +30,10 @@ __git-short_shortmap ()
   # only perform completion when within a git dir
   __gitdir >/dev/null || return $?
 
+  # populate variables used by various git completion functions
+  local cur words cword prev
+  _get_comp_words_by_ref -n =: cur words cword prev
+
   # execute the associated completion function (column two of the shortmaps
   # file)
   $( awk "/^$1 / { print \$2 }" <<< "$__git_short_maps" )
