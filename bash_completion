@@ -63,7 +63,7 @@ __git-short_shortalias ()
   cmd="$( grep "^$shortcmd " <<< "$__git_short_maps" | cut -d' ' -f3- )"
   if [ -z "$cmd" ]; then
     return
-  elif [ "$( grep '^|' <<< "$cmd")" ]; then
+  elif grep -q '^|' <<< "$cmd"; then
     eval "$( sed 's/^|//' <<< "$cmd" ) $@"
     return $?
   fi
