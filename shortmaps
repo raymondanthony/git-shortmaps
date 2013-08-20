@@ -15,6 +15,7 @@ ds _git_diff :diff --stat
 f _git_fetch :fetch
 lh _git_log |git log --oneline --decorate --color | head
 m _git_merge :merge
+ma : :merge --abort
 p _git_push :push
 P _git_pull :pull
 Pr _git_pull :pull --rebase

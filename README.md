@@ -36,6 +36,7 @@ By default, the following mappings are available, each with tab completion:
 * `f` - git fetch
 * `lh` - git log --oneline --decorate --color | head
 * `m` - git merge
+* `ma` - git merge --abort
 * `p` - git push
 * `P` - git pull
 * `Pr` - git pull --rebase
