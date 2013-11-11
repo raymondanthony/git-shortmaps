@@ -16,10 +16,27 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # #
 
+# override their config function to provide our own options
+eval "$( echo '_prev_git_config ()'; declare -f _git_config | tail -n +2 )"
+_git_config ()
+{
+  _prev_git_config
+
+  _get_comp_words_by_ref -n =: cur prev
+
+  # add our configuration options
+  COMPREPLY=( ${COMPREPLY[@]-} state.delim.left state.delim.right )
+}
+
+__git-short_cmdok ()
+{
+  test "${1:0:1}" != -
+}
+
 __git-short_docomplete ()
 {
   # ignore problem commands
-  grep -q '^-' <<< "$1" && return
+  __git-short_cmdok "$1" || return
 
   complete -o bashdefault -o default -o nospace -F $2 $1 2>/dev/null \
     || complete -o default -o nospace -F $2 $1
@@ -43,7 +60,7 @@ __git-short_register_alias ()
 {
   # ignore invalid aliases (for which we define functions to handle them
   # instead)
-  grep -q '^-' <<< "$1" && return
+  __git-short_cmdok "$1" || return
 
   alias $1="__git-short_shortalias $1"
 }
