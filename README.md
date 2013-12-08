@@ -8,10 +8,10 @@ The `bash_completion` file contains Bash completion for custom commands and
 ## Setup
 Source the `bash_completion` file (e.g. place in `.bashrc` or in
 `/etc/bash_completion.d/` on Debian systems), with the path to the provided
-shortmaps file as the only argument:
+`shortmaps` file as the only argument:
 
 ```
-$ . bash_completion .
+$ . bash_completion ./shortmaps
 ```
 
 You may also add your own mappings to `~/.git-shortmaps`.
