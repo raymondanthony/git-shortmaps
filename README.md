@@ -39,8 +39,8 @@ By default, the following mappings are available, each with tab completion:
 * `ma` - git merge --abort
 * `p` - git push
 * `P` - git pull
-* `Pr` - git pull --rebase
-* `Prp` - git pull --rebase && git push
+* `Pr` - git pull --rebase=preserve
+* `Prp` - git pull --rebase=preserve && git push
 * `R` - git rebase
 * `Ri` - git rebase --interactive
 * `Ra` - git rebase --abort
