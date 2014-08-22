@@ -1,5 +1,7 @@
 a _git_add :add
 A _git_add :add -A
+b _git_branch :branch
+bv _git_branch :branch -v
 B _git_bisect :bisect
 Bs _git_bisect :bisect start
 Bg _git_bisect :bisect good
@@ -13,7 +15,13 @@ CS _git_commit :commit -S -am
 d _git_diff :diff
 ds _git_diff :diff --stat
 f _git_fetch :fetch
-lh _git_log |git log --oneline --decorate --color | head
+L _git_log :log --show-signature
+Ld _git_log :log --show-signature --decorate
+Lf _git_log :log --show-signature --first-parent
+Lg _git_log :log --show-signature --graph
+Lgd _git_log :log --show-signature --graph --decorate
+Lm _git_log :log --show-signature --merges
+Ln _git_log :log --show-signature --no-merges
 m _git_merge :merge
 ma : :merge --abort
 p _git_push :push
@@ -26,6 +34,10 @@ Ra _git_rebase :rebase --abort
 Rc _git_rebase :rebase --continue
 s : :status --short
 S _git_stash :stash
+Sa _git_stash :stash apply
+Sl _git_stash :stash list
+Sp _git_stash :stash pop
+Ss _git_stash :stash show
 t : tig
 T _git_tag :tag
 - : :checkout -
