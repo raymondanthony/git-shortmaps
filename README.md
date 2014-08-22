@@ -71,6 +71,7 @@ If a shortmap conflicts with an existing command on your system, then you may
 wrap the command in quotes to invoke the actual command rather than the
 shortmap (e.g. `'c'` to invoke `which c` rather than the shortmap `c`).
 
+
 ## Configuration
 The file format is as follows:
 
@@ -84,3 +85,16 @@ If `CMD` contains a colon (`:`) prefix, the command will be prefixed with `git`.
 prefixed with a pipe (`|`), the command will be sent to `eval` (needed for
 certain features like subshells). Commands without either prefix will be
 executed normally.
+
+
+## License
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+more details.
+
