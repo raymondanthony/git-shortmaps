@@ -26,6 +26,10 @@ Ra _git_rebase :rebase --abort
 Rc _git_rebase :rebase --continue
 s : :status --short
 S _git_stash :stash
+Sa _git_stash :stash apply
+Sl _git_stash :stash list
+Sp _git_stash :stash pop
+Ss _git_stash :stash show
 t : tig
 T _git_tag :tag
 - : :checkout -

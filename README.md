@@ -47,6 +47,10 @@ By default, the following mappings are available, each with tab completion:
 * `Rc` - git rebase --continue
 * `s` - git status --short
 * `S` - git stash
+* `Sa` - git stash apply
+* `Sl` - git stash list
+* `Sp` - git stash pop
+* `Ss` - git stash show
 * `t` - execute tig
 * `T` - git tag
 * `-` - git checkout -
