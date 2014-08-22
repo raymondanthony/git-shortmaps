@@ -1,5 +1,7 @@
 a _git_add :add
 A _git_add :add -A
+b _git_branch :branch
+bv _git_branch :branch -v
 B _git_bisect :bisect
 Bs _git_bisect :bisect start
 Bg _git_bisect :bisect good

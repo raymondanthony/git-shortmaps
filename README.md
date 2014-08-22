@@ -21,6 +21,8 @@ By default, the following mappings are available, each with tab completion:
 
 * `a` - git add
 * `A` - git add -A
+* `b` - git branch
+* `bv` - git branch -v
 * `B` - git bisect
 * `Bs` - git bisect start
 * `Bg` - git bisect good
