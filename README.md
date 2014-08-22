@@ -66,6 +66,7 @@ By default, the following mappings are available, each with tab completion:
 * `T` - git tag
 * `-` - git checkout -
 * `--` - `cd` to root dir of repository
+* `?` - display all shortmaps
 
 The shortmaps may only be used within a Git repository; otherwise, they will
 invoke the actual command on the system.

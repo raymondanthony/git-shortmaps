@@ -42,3 +42,4 @@ t : tig
 T _git_tag :tag
 - : :checkout -
 -- : |cd "$( git rev-parse --show-toplevel 2>/dev/null )"
+? : __git-short_help
