@@ -2,6 +2,8 @@
 #
 # Provides short mappings for common Git commands
 #
+# Copyright (C) 2011, 2012, 2013, 2014 Mike Gerwitz
+#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +15,7 @@
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # #
 
 declare -r __git_short_path="${1:-$(pwd)/shortmaps}"
@@ -107,6 +109,12 @@ Git Shortmaps loaded from:
 
 Defined shortmaps:
 $( __git-short_map_out | sed 's/^/  /' )
+
+git-shortmaps Copyright (C) 2011, 2012, 2013, 2014 Mike Gerwitz
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions; see the GNU GPLv3+ for details at
+<https://www.gnu.org/licenses/>.
 EOH
 }
 
