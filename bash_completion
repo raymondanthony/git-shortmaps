@@ -38,6 +38,8 @@ __git-short_docomplete()
 
 __git-short_shortmap()
 {
+  local -r shortcmd="$1"
+
   # only perform completion when within a git dir
   __gitdir >/dev/null || return
 
@@ -47,7 +49,7 @@ __git-short_shortmap()
 
   # execute the associated completion function (column two of the shortmaps
   # file)
-  $( awk "/^$1 / { print \$2 }" <<< "$__git_short_maps" )
+  "${__git_short_comp[$shortcmd]}"
 }
 
 
@@ -75,15 +77,12 @@ __git-short_shortalias()
     return
   }
 
-  local cmd="$(
-    grep "^$shortcmd " <<< "$__git_short_maps" \
-      | cut -d' ' -f3-
-  )"
+  local cmd="${__git_short_maps[$shortcmd]}"
+  test -n "$cmd" || return
 
-  if [ -z "$cmd" ]; then
-    return
-  elif grep -q '^|' <<< "$cmd"; then
-    eval "$( sed 's/^|//' <<< "$cmd" ) $@"
+  # pipe cmd prefix indicates a verbatim command
+  if [ "${cmd:0:1}" == '|' ]; then
+    eval "${cmd:1}" '"$@"'
     return
   fi
 
@@ -92,30 +91,33 @@ __git-short_shortalias()
 }
 
 
+# load shortmaps from cwd (or provided path) and home dir (if available)
+__git-short_load_maps()
+{
+  local -r path="${1:-./shortmaps}"
+
+  sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /' \
+    "$path" ~/.git-shortmaps \
+    2>/dev/null
+}
+
+
 # functions that cannot be aliased
 - () { __git-short_shortalias - "$@"; }
 -- () { __git-short_shortalias -- "$@"; }
 
-# load shortmaps from cwd (or provided path) and home dir (if available)
-__git_short_maps=$(
-  sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /' \
-    "${1:-./shortmaps}" ~/.git-shortmaps \
-    2>/dev/null
-)
 
-oldifs="$IFS"
+declare shortcmd comp cmd
+declare -A __git_short_maps=() __git_short_comp=()
 
 # register each shortmap
-IFS=$'\n'
-for line in $__git_short_maps; do
-  IFS=$' '
-  set -- $line
+while read shortcmd comp cmd; do
+  test -n "$shortcmd" || continue
 
-  [ -z "$1" ] && continue
+  __git_short_maps["$shortcmd"]="$cmd"
+  __git_short_comp["$shortcmd"]="$comp"
 
-  __git-short_docomplete "$1" __git-short_shortmap
-  __git-short_register_alias "$1"
-done
-
-IFS="$oldifs"
+  __git-short_docomplete "$shortcmd" __git-short_shortmap
+  __git-short_register_alias "$shortcmd"
+done < <( __git-short_load_maps "$1" )
 
