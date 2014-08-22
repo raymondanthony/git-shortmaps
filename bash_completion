@@ -16,24 +16,30 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # #
 
-__git-short_cmdok ()
+
+__git-short_cmdok()
 {
-  test "${1:0:1}" != -
+  local -r cmd="$1"
+  test "${cmd:0:1}" != -
 }
 
-__git-short_docomplete ()
+
+__git-short_docomplete()
 {
+  local -r cmd="$1" fn="$2"
+
   # ignore problem commands
-  __git-short_cmdok "$1" || return
+  __git-short_cmdok "$cmd" || return
 
-  complete -o bashdefault -o default -o nospace -F $2 $1 2>/dev/null \
-    || complete -o default -o nospace -F $2 $1
+  complete -o bashdefault -o default -o nospace -F"$fn" "$cmd" 2>/dev/null \
+    || complete -o default -o nospace -F"$fn" "$cmd"
 }
 
-__git-short_shortmap ()
+
+__git-short_shortmap()
 {
   # only perform completion when within a git dir
-  __gitdir >/dev/null || return $?
+  __gitdir >/dev/null || return
 
   # populate variables used by various git completion functions
   local cur words cword prev
@@ -44,37 +50,47 @@ __git-short_shortmap ()
   $( awk "/^$1 / { print \$2 }" <<< "$__git_short_maps" )
 }
 
-__git-short_register_alias ()
+
+__git-short_register_alias()
 {
+  local -r cmd="$1"
+
   # ignore invalid aliases (for which we define functions to handle them
   # instead)
-  __git-short_cmdok "$1" || return
+  __git-short_cmdok "$cmd" || return
 
-  alias $1="__git-short_shortalias $1"
+  alias $cmd="__git-short_shortalias '$cmd'"
 }
 
-__git-short_shortalias ()
+
+__git-short_shortalias()
 {
-  shortcmd=$1
+  local -r shortcmd="$1"
   shift
 
-  # if we're not within a git dir, fall back to an actual command of this name
+  # if we're not within a git dir, fall back to an actual command of this
+  # name
   __gitdir >/dev/null || {
-    " $shortcmd $@"
-    return $?
+    command "$shortcmd" "$@"
+    return
   }
 
-  # execute the command
-  cmd="$( grep "^$shortcmd " <<< "$__git_short_maps" | cut -d' ' -f3- )"
+  local cmd="$(
+    grep "^$shortcmd " <<< "$__git_short_maps" \
+      | cut -d' ' -f3-
+  )"
+
   if [ -z "$cmd" ]; then
     return
   elif grep -q '^|' <<< "$cmd"; then
     eval "$( sed 's/^|//' <<< "$cmd" ) $@"
-    return $?
+    return
   fi
 
+  # intentionally unquoted
   $cmd "$@"
 }
+
 
 # functions that cannot be aliased
 - () { __git-short_shortalias - "$@"; }
@@ -95,10 +111,10 @@ for line in $__git_short_maps; do
   set -- $line
 
   [ -z "$1" ] && continue
-  __git-short_docomplete "$1" __git-short_shortmap
 
   __git-short_docomplete "$1" __git-short_shortmap
   __git-short_register_alias "$1"
 done
 
 IFS="$oldifs"
+
