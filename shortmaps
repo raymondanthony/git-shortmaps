@@ -20,7 +20,7 @@ p _git_push :push
 P _git_pull :pull
 Pr _git_pull :pull --rebase=preserve
 Prp _git_pull |git pull --rebase=preserve && git push
-R __git_rebase :rebase
+R _git_rebase :rebase
 Ri _git_rebase :rebase --interactive
 Ra _git_rebase :rebase --abort
 Rc _git_rebase :rebase --continue
