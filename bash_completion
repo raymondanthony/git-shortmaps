@@ -98,8 +98,9 @@ __git-short_shortalias()
 
 # load shortmaps from cwd (or provided path) and home dir (if available)
 __git_short_maps=$(
-  cat ${1:-./shortmaps} ~/.git-shortmaps 2>/dev/null \
-    | sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /'
+  sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /' \
+    "${1:-./shortmaps}" ~/.git-shortmaps \
+    2>/dev/null
 )
 
 oldifs="$IFS"
