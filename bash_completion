@@ -16,6 +16,8 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # #
 
+declare -r __git_short_path="${1:-$(pwd)/shortmaps}"
+
 
 __git-short_cmdok()
 {
@@ -70,6 +72,11 @@ __git-short_shortalias()
   local -r shortcmd="$1"
   shift
 
+  if [ "$shortcmd" == --help ]; then
+    __git-short_help
+    return
+  fi
+
   # if we're not within a git dir, fall back to an actual command of this
   # name
   __gitdir >/dev/null || {
@@ -91,10 +98,35 @@ __git-short_shortalias()
 }
 
 
+__git-short_help()
+{
+cat <<EOH
+Git Shortmaps loaded from:
+  - $HOME/.git-shortmaps
+  - $__git_short_path
+
+Defined shortmaps:
+$( __git-short_map_out | sed 's/^/  /' )
+EOH
+}
+
+
+__git-short_map_out()
+{
+  local shortcmd
+
+  for shortcmd in "${!__git_short_maps[@]}"; do
+    echo -e "$shortcmd\t${__git_short_maps[$shortcmd]}"
+  done \
+    | sort \
+    | { type column &>/dev/null && column -t -s$'\t' || cat; }
+}
+
+
 # load shortmaps from cwd (or provided path) and home dir (if available)
 __git-short_load_maps()
 {
-  local -r path="${1:-./shortmaps}"
+  local -r path="$1"
   cat "$path" ~/.git-shortmaps 2>/dev/null
 }
 
@@ -120,5 +152,5 @@ while read shortcmd comp cmd; do
 
   __git-short_docomplete "$shortcmd" __git-short_shortmap
   __git-short_register_alias "$shortcmd"
-done < <( __git-short_load_maps "$1" )
+done < <( __git-short_load_maps "$__git_short_path" )
 
