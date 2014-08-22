@@ -95,10 +95,7 @@ __git-short_shortalias()
 __git-short_load_maps()
 {
   local -r path="${1:-./shortmaps}"
-
-  sed 's/^\([^ ]\+ [^ ]\+\) :/\1 git /' \
-    "$path" ~/.git-shortmaps \
-    2>/dev/null
+  cat "$path" ~/.git-shortmaps 2>/dev/null
 }
 
 
@@ -113,6 +110,10 @@ declare -A __git_short_maps=() __git_short_comp=()
 # register each shortmap
 while read shortcmd comp cmd; do
   test -n "$shortcmd" || continue
+
+  if [ "${cmd:0:1}" == : ]; then
+    cmd="git ${cmd:1}"
+  fi
 
   __git_short_maps["$shortcmd"]="$cmd"
   __git_short_comp["$shortcmd"]="$comp"
