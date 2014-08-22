@@ -5,6 +5,7 @@ user-configurable commands for Git with support for Bash tab completion.
 The `bash_completion` file contains Bash completion for custom commands and
 "shortmappings", which provide single-character aliases to common Git commands.
 
+
 ## Setup
 Source the `bash_completion` file (e.g. place in `.bashrc` or in
 `/etc/bash_completion.d/` on Debian systems), with the path to the provided
@@ -14,7 +15,9 @@ Source the `bash_completion` file (e.g. place in `.bashrc` or in
 $ . bash_completion ./shortmaps
 ```
 
-You may also add your own mappings to `~/.git-shortmaps`.
+You may also add your own mappings to `~/.git-shortmaps`, which is sourced
+automatically and will take precedence over any other mappings.
+
 
 ## Usage
 By default, the following mappings are available, each with tab completion:
@@ -64,27 +67,27 @@ By default, the following mappings are available, each with tab completion:
 * `-` - git checkout -
 * `--` - `cd` to root dir of repository
 
-The shortmaps may only be used within a git repository; otherwise, they will
+The shortmaps may only be used within a Git repository; otherwise, they will
 invoke the actual command on the system.
 
-If a shortmap conflicts with an existing command on your system, then you may
-wrap the command in quotes to invoke the actual command rather than the
-shortmap (e.g. `'c'` to invoke `which c` rather than the shortmap `c`).
+If a shortmap conflicts with an existing command on your system, then you
+may either unalias the map, or use `command X` to invoke the system command
+`X`.
 
 
 ## Configuration
 The file format is as follows:
 
 ```
-KEY COMPLETION :CMD
-KEY COMPLETION |CMD
-KEY COMPLETION CMD
+key completion :cmd
+key completion |cmd
+key completion cmd
 ```
 
-If `CMD` contains a colon (`:`) prefix, the command will be prefixed with `git`. If
-prefixed with a pipe (`|`), the command will be sent to `eval` (needed for
-certain features like subshells). Commands without either prefix will be
-executed normally.
+If `cmd` contains a colon (`:`) prefix, the command will be prefixed with
+`git`. If prefixed with a pipe (`|`), the command will be sent to `eval`
+(needed for certain features like subshells). Commands without either prefix
+will be executed normally.
 
 
 ## License
