@@ -36,7 +36,13 @@ By default, the following mappings are available, each with tab completion:
 * `d` - git diff
 * `ds` - git diff --stat
 * `f` - git fetch
-* `lh` - git log --oneline --decorate --color | head
+* `L` - git log --show-signature
+* `Ld` - git log --show-signature --decorate
+* `Lf` - git log --show-signature --first-parent
+* `Lg` - git log --show-signature --graph
+* `Lgd` - git log --show-signature --graph --decorate
+* `Lm` - git log --show-signature --merges
+* `Ln` - git log --show-signature --no-merges
 * `m` - git merge
 * `ma` - git merge --abort
 * `p` - git push
