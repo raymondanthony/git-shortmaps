@@ -145,7 +145,7 @@ __git-short_load_maps()
 
 
 declare shortcmd comp cmd
-declare -A __git_short_maps=() __git_short_comp=()
+declare -gA __git_short_maps __git_short_comp
 
 # register each shortmap
 while read shortcmd comp cmd; do
