@@ -24,6 +24,7 @@ By default, the following mappings are available, each with tab completion:
 
 * `a` - git add
 * `A` - git add -A
+* `AS` - git add -A && git push
 * `b` - git branch
 * `bv` - git branch -v
 * `B` - git bisect
@@ -48,10 +49,18 @@ By default, the following mappings are available, each with tab completion:
 * `Ln` - git log --show-signature --no-merges
 * `m` - git merge
 * `ma` - git merge --abort
+* `mm` - git merge --no-ff
+* `M` - git submodule
+* `Mi` - git submodule update --init --recursive
+* `Mu` - git submodule update
+* `MP` - git submodule update --remote
 * `p` - git push
+* `pu` - git push --set-upstream
 * `P` - git pull
 * `Pr` - git pull --rebase=preserve
 * `Prp` - git pull --rebase=preserve && git push
+* `r` - git reset
+* `rh` - git reset HEAD :/
 * `R` - git rebase
 * `Ri` - git rebase --interactive
 * `Ra` - git rebase --abort
