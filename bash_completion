@@ -45,7 +45,7 @@ __git-short_shortmap()
   local -r shortcmd="$1"
 
   # only perform completion when within a git dir
-  __gitdir >/dev/null || return
+  git rev-parse &>/dev/null || return
 
   # populate variables used by various git completion functions
   local cur words cword prev
@@ -81,7 +81,7 @@ __git-short_shortalias()
 
   # if we're not within a git dir, fall back to an actual command of this
   # name
-  __gitdir >/dev/null || {
+  git rev-parse &>/dev/null || {
     command "$shortcmd" "$@"
     return
   }
