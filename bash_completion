@@ -2,7 +2,7 @@
 #
 # Provides short mappings for common Git commands
 #
-# Copyright (C) 2011, 2012, 2013, 2014 Mike Gerwitz
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 Mike Gerwitz
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -20,6 +20,10 @@
 
 declare -r __git_short_path="${1:-$(pwd)/shortmaps}"
 
+# some distros use completion lazy-loading
+type -t _completion_loader &>/dev/null \
+  && _completion_loader git
+
 
 __git-short_cmdok()
 {
@@ -35,7 +39,7 @@ __git-short_docomplete()
   # ignore problem commands
   __git-short_cmdok "$cmd" || return
 
-  complete -o bashdefault -o default -o nospace -F"$fn" "$cmd" 2>/dev/null \
+  complete -o bashdefault -o default -o nospace -F"$fn" "$cmd" 1>/dev/null \
     || complete -o default -o nospace -F"$fn" "$cmd"
 }
 
