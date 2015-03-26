@@ -27,7 +27,7 @@ m _git_merge :merge
 ma : :merge --abort
 mm _git_merge :merge --no-ff
 M _git_submodule :submodule
-Mi _git_submodule :submodule update --init --Recursive
+Mi _git_submodule :submodule update --init --recursive
 Mu _git_submodule :submodule update
 MP _git_submodule :submodule update --remote
 p _git_push :push
