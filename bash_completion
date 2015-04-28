@@ -110,7 +110,7 @@ Git Shortmaps loaded from:
 Defined shortmaps:
 $( __git-short_map_out | sed 's/^/  /' )
 
-git-shortmaps Copyright (C) 2011, 2012, 2013, 2014 Mike Gerwitz
+git-shortmaps Copyright (C) 2011, 2012, 2013, 2014, 2015 Mike Gerwitz
 This program comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it
 under certain conditions; see the GNU GPLv3+ for details at
