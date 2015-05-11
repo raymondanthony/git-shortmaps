@@ -26,6 +26,8 @@ By default, the following mappings are available, each with tab completion:
 * `A` - git add -A
 * `AS` - git add -A && git push
 * `b` - git branch
+* `bd` - git branch --delete
+* `bd-` - delete branch `@{-1}`
 * `bv` - git branch -v
 * `B` - git bisect
 * `Bs` - git bisect start
