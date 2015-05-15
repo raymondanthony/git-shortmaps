@@ -38,7 +38,10 @@ P _git_pull :pull
 Pr _git_pull :pull --rebase=preserve
 Prp _git_pull |git pull --rebase=preserve && git push
 r _git_reset :reset
-rh _git_reset :reset HEAD :/
+r@ _git_reset :reset @
+r@: _git_reset :reset @ :/
+r@* _git_reset :reset @ *
+rh _git_reset :reset HEAD
 R _git_rebase :rebase
 Ri _git_rebase :rebase --interactive
 Ra _git_rebase :rebase --abort

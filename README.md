@@ -62,6 +62,9 @@ By default, the following mappings are available, each with tab completion:
 * `Pr` - git pull --rebase=preserve
 * `Prp` - git pull --rebase=preserve && git push
 * `r` - git reset
+* `r@` - git reset @
+* `r@:`- git reset @ :/
+* `r@*` - git reset @ *
 * `rh` - git reset HEAD :/
 * `R` - git rebase
 * `Ri` - git rebase --interactive
