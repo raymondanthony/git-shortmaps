@@ -33,6 +33,7 @@ Mi _git_submodule :submodule update --init --recursive
 Mu _git_submodule :submodule update --recursive
 MP _git_submodule :submodule update --remote --recursive
 p _git_push :push
+pd- : |ref="$( git rev-parse --symbolic-full-name @{-1} )"; git push "${1:-origin}" :"${ref#refs/heads/*}"
 pu _git_push :push --set-upstream
 P _git_pull :pull
 Pr _git_pull :pull --rebase=preserve

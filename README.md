@@ -57,6 +57,7 @@ By default, the following mappings are available, each with tab completion:
 * `Mu` - git submodule update
 * `MP` - git submodule update --remote
 * `p` - git push
+* `pd-` - delete remote branch `@{-1}` (default `origin`)
 * `pu` - git push --set-upstream
 * `P` - git pull
 * `Pr` - git pull --rebase=preserve
