@@ -3,7 +3,7 @@ A _git_add :add -A
 AS : |git add -A && git stash
 b _git_branch :branch
 bd _git_branch :branch -d
-bd- : |ref="$( git rev-parse --symbolic-full-name @{-1} )"; git branch -d "${ref#refs/heads/*}"
+bd- : |ref="$( git rev-parse --symbolic-full-name @{-1} )"; git branch -d "${ref#refs/heads/*}" "$@"
 bv _git_branch :branch -v
 B _git_bisect :bisect
 Bs _git_bisect :bisect start
